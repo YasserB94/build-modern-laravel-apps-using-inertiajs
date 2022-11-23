@@ -25,6 +25,10 @@ Route::get('/laracasts/settings', function () {
     return Inertia::render('Laracasts/Settings');
 });
 
+Route::post('/laracasts/logout', function () {
+    dd(request('comingFromALinkAttribute'));
+});
+
 /*Below -> Made by Laravel Breeze*/
 Route::get('/', function () {
     return Inertia::render('Welcome', [

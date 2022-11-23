@@ -3,7 +3,7 @@ import Nav from "@/Pages/Laracasts/Shared/Nav.vue";
 </script>
 
 <template>
-    <header>
+    <header class="">
         <h1>Users</h1>
         <Nav></Nav>
     </header>
