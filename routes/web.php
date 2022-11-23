@@ -15,6 +15,20 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/laracasts',function(){
+    return Inertia::render('Laracasts/Index',[
+        'greeting'=>'Hello World!','technologies'=>['Laravel','VueJS','InertiaJS','TailwindCSS']
+        ]
+    );
+});
+Route::get('/laracasts/users',function(){
+    return Inertia::render('Users');
+});
+Route::get('/laracasts/settings',function(){
+    return Inertia::render('Settings');
+});
+
+/*Below -> Made by Laravel Breeze*/
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -23,7 +37,6 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
