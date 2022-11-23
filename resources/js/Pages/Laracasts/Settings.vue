@@ -1,9 +1,13 @@
 <script setup>
-console.log("Settings works!")
+import Nav from "@/Pages/Laracasts/Shared/Nav.vue";
+
 </script>
 
 <template>
-    <p>Settings works!</p>
+    <header>
+        <h1>Settings</h1>
+        <Nav></Nav>
+    </header>
 </template>
 
 <style scoped>

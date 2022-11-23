@@ -15,17 +15,14 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/laracasts',function(){
-    return Inertia::render('Laracasts/Index',[
-        'greeting'=>'Hello World!','technologies'=>['Laravel','VueJS','InertiaJS','TailwindCSS']
-        ]
-    );
+Route::get('/laracasts', function () {
+    return Inertia::render('Laracasts/Index');
 });
-Route::get('/laracasts/users',function(){
-    return Inertia::render('Users');
+Route::get('/laracasts/users', function () {
+    return Inertia::render('Laracasts/Users');
 });
-Route::get('/laracasts/settings',function(){
-    return Inertia::render('Settings');
+Route::get('/laracasts/settings', function () {
+    return Inertia::render('Laracasts/Settings');
 });
 
 /*Below -> Made by Laravel Breeze*/
@@ -47,4 +44,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
