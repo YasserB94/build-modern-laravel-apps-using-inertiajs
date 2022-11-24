@@ -17,24 +17,22 @@ use Inertia\Inertia;
 */
 Route::get('/laracasts', function () {
     return Inertia::render('Laracasts/Index');
-});
+})->name('laracasts');
 Route::get('/laracasts/users', function () {
     return Inertia::render('Laracasts/Users');
-});
+})->name('laracasts.users');
 Route::get('/laracasts/time', function () {
-
-
     return Inertia::render('Laracasts/Time',[
         'time'=>now()->setTimezone('Europe/Brussels')->toTimeString()
     ]);
-});
+})->name('laracasts.time');
 Route::get('/laracasts/settings', function () {
     return Inertia::render('Laracasts/Settings');
-});
+})->name('laracasts.settings');
 
 Route::post('/laracasts/logout', function () {
     dd(request('comingFromALinkAttribute'));
-});
+})->name('laracasts.logout');
 
 /*Below -> Made by Laravel Breeze*/
 Route::get('/', function () {

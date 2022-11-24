@@ -3,30 +3,27 @@ import NavLink from '@/Pages/Laracasts/Shared/NavLink.vue';
 const links = [
     {
         title: 'home',
-        href: '/laracasts',
+        routeName: 'laracasts',
         element: 'a',
     },
     {
         title: 'users',
-        href: '/laracasts/users',
+        routeName: 'laracasts.users',
         element: 'a',
     },
     {
-
-    },
-    {
         title: 'time',
-        href: '/laracasts/time',
+        routeName: 'laracasts.time',
         element: 'a',
     },
     {
         title: 'settings',
-        href: '/laracasts/settings',
+        routeName: 'laracasts.settings',
         element: 'a',
     },
     {
         title: 'logout',
-        href: '/laracasts/logout',
+        routeName: 'laracasts.logout',
         element: 'button',
         method: 'POST',
     },
@@ -34,13 +31,14 @@ const links = [
 </script>
 <template>
     <nav class="flex justify-center border-b-2 border-emerald-500">
-        <ul class="flex max-w-md space-x-2 items-center my-1">
-            <li v-for="link in links">
+        <ul class="my-1 flex max-w-md items-center space-x-2">
+            <li v-for="(link, i) in links" :key="`${link.title}${i}`">
                 <NavLink
-                    :href="link.href"
+                    :href="route(link.routeName)"
                     :element="link.element"
                     :title="link.title"
                     :method="link.method && link.method"
+                    :active="route().current(link.routeName)"
                 />
             </li>
         </ul>
