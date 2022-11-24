@@ -29,7 +29,7 @@ defineProps({
           :as="element"
           :active="active"
           :method="method"
-          class="capitalize transition duration-300 text-emerald-900 p-1"
+          class="capitalize transition duration-300 text-emerald-900 p-1 text-center"
           :class="{' hover:text-emerald-600 hover:underline':element==='a',
           'text-emerald-600 underline':element==='a'&&active,
           'border rounded shadow hover:shadow-inner':element==='button',

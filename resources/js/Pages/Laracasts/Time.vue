@@ -1,6 +1,7 @@
 <script setup>
 import Nav from '@/Pages/Laracasts/Shared/Nav.vue';
-// import { Link } from '@inertiajs/inertia-vue3';
+import NavLink from '@/Pages/Laracasts/Shared/NavLink.vue';
+
 
 defineProps({
     time: {
@@ -21,14 +22,12 @@ defineProps({
         <p class="my-auto h-fit w-full text-center">
             Time is <span class="text-emerald-600">{{ time }}</span>
         </p>
-<!--        <Link-->
-<!--            class="rounded border-l border-gray-300 hover:bg-emerald-300 hover:text-emerald-900"-->
-<!--            as="button"-->
-<!--            href="/laracasts/time"-->
-<!--            preserveScroll-->
-<!--            >Update Time</Link-->
-<!--        >-->
-
+        <NavLink
+            :href="route('laracasts.time')"
+            :title="'update time'"
+            :element="'button'"
+            preserveScroll
+        />
     </div>
 </template>
 
