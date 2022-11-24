@@ -21,6 +21,13 @@ Route::get('/laracasts', function () {
 Route::get('/laracasts/users', function () {
     return Inertia::render('Laracasts/Users');
 });
+Route::get('/laracasts/time', function () {
+
+
+    return Inertia::render('Laracasts/Time',[
+        'time'=>now()->setTimezone('Europe/Brussels')->toTimeString()
+    ]);
+});
 Route::get('/laracasts/settings', function () {
     return Inertia::render('Laracasts/Settings');
 });

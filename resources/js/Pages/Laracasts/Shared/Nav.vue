@@ -1,43 +1,49 @@
 <script setup>
-import { Link } from "@inertiajs/inertia-vue3";
-</script>
+import NavLink from '@/Pages/Laracasts/Shared/NavLink.vue';
+const links = [
+    {
+        title: 'home',
+        href: '/laracasts',
+        element: 'a',
+    },
+    {
+        title: 'users',
+        href: '/laracasts/users',
+        element: 'a',
+    },
+    {
 
+    },
+    {
+        title: 'time',
+        href: '/laracasts/time',
+        element: 'a',
+    },
+    {
+        title: 'settings',
+        href: '/laracasts/settings',
+        element: 'a',
+    },
+    {
+        title: 'logout',
+        href: '/laracasts/logout',
+        element: 'button',
+        method: 'POST',
+    },
+];
+</script>
 <template>
-    <nav class="border-b-2 border-emerald-500 flex justify-center">
-        <ul class="flex content-center w-full max-w-md justify-between">
-            <li>
-                <Link
-                    href="/laracasts/"
-                    class="px-1.5 py-0.5 duration-300 hover:text-emerald-900"
-                    >Home
-                </Link>
-            </li>
-            <li>
-                <Link
-                    href="/laracasts/users"
-                    class="px-1.5 py-0.5 duration-300 hover:text-emerald-900"
-                    >Users
-                </Link>
-            </li>
-            <li>
-                <Link
-                    href="/laracasts/settings"
-                    class="px-1.5 py-0.5 duration-300 hover:text-emerald-900"
-                    >Settings
-                </Link>
-            </li>
-            <li>
-                <Link
-                    method="POST"
-                    :data="{comingFromALinkAttribute:'seems sketchy!'}"
-                    href="/laracasts/logout"
-                    as="button"
-                    class="rounded border px-1.5 py-0.5 shadow duration-500 hover:shadow-inner"
-                    >Logout
-                </Link>
+    <nav class="flex justify-center border-b-2 border-emerald-500">
+        <ul class="flex max-w-md space-x-2 items-center my-1">
+            <li v-for="link in links">
+                <NavLink
+                    :href="link.href"
+                    :element="link.element"
+                    :title="link.title"
+                    :method="link.method && link.method"
+                />
             </li>
         </ul>
     </nav>
 </template>
-
 <style scoped></style>

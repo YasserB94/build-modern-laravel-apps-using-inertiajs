@@ -1,7 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.spinner{
-    animation-duration: 50s !important;
-    transition-duration: 50s !important;
-}
