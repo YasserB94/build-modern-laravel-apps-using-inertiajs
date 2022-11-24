@@ -1,5 +1,6 @@
 <script setup>
 import Nav from '@/Pages/Laracasts/Shared/Nav.vue';
+
 defineProps({
     pageTitle: {
         type: String,
