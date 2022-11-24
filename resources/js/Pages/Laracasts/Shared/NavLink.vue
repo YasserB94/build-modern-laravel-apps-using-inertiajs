@@ -1,5 +1,5 @@
 <script setup>
-import {Link} from "@inertiajs/inertia-vue3";
+import { Link } from '@inertiajs/inertia-vue3';
 defineProps({
     title: {
         type: String,
@@ -17,28 +17,28 @@ defineProps({
         type: Boolean,
         default: false,
     },
-    method:{
-        type:String,
-        default:'GET',
-    }
+    method: {
+        type: String,
+        default: 'GET',
+    },
 });
 </script>
 
 <template>
-    <Link :href="href"
-          :as="element"
-          :active="active"
-          :method="method"
-          class="capitalize transition duration-300 text-emerald-900 p-1 text-center"
-          :class="{' hover:text-emerald-600 hover:underline':element==='a',
-          'text-emerald-600 underline':element==='a'&&active,
-          'border rounded shadow hover:shadow-inner':element==='button',
-          }"
+    <Link
+        :href="href"
+        :as="element"
+        :active="active"
+        :method="method"
+        class="p-1 text-center capitalize text-emerald-900 transition duration-300"
+        :class="{
+            ' hover:text-emerald-600 hover:underline': element === 'a',
+            'text-emerald-600 underline': element === 'a' && active,
+            'rounded border shadow hover:shadow-inner': element === 'button',
+        }"
     >
-        {{title}}
+        {{ title }}
     </Link>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

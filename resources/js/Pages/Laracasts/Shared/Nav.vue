@@ -30,8 +30,8 @@ const links = [
 ];
 </script>
 <template>
-    <nav class="flex justify-center border-b-2 border-emerald-500">
-        <ul class="my-1 flex max-w-md items-center space-x-2">
+    <nav>
+        <ul class="flex items-center space-x-2">
             <li v-for="(link, i) in links" :key="`${link.title}${i}`">
                 <NavLink
                     :href="route(link.routeName)"

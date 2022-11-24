@@ -1,8 +1,5 @@
 <script setup>
-import Nav from '@/Pages/Laracasts/Shared/Nav.vue';
 import NavLink from '@/Pages/Laracasts/Shared/NavLink.vue';
-
-
 defineProps({
     time: {
         default: `Default! ${new Date(1994, 1, 25, 8, 30).toString()}`,
@@ -10,12 +7,12 @@ defineProps({
     },
 });
 </script>
-
+<script>
+import Layout from '@/Pages/Laracasts/Shared/Layout.vue';
+export default { layout: Layout }
+</script>
 <template>
-    <header>
-        <h1>Time</h1>
-        <Nav></Nav>
-    </header>
+
     <div
         class="m-2 mt-[100vh] flex h-fit max-w-md justify-between rounded border p-4"
     >
@@ -29,6 +26,7 @@ defineProps({
             preserveScroll
         />
     </div>
+
 </template>
 
 <style scoped></style>

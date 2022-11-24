@@ -1,13 +1,12 @@
 <script setup>
-import Nav from "@/Pages/Laracasts/Shared/Nav.vue";
+import Layout from "@/Pages/Laracasts/Shared/Layout.vue";
 
 </script>
 
 <template>
-    <header>
-        <h1>Settings</h1>
-        <Nav></Nav>
-    </header>
+    <Layout :page-title="'Settings'">
+        <h1>Settingss</h1>
+    </Layout>
 </template>
 
 <style scoped>
