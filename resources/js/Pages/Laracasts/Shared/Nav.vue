@@ -10,6 +10,10 @@ const links = [
         title: 'users',
         routeName: 'laracasts.users',
         element: 'a',
+    },    {
+        title: 'create',
+        routeName: 'laracasts.users.create',
+        element: 'a',
     },
     {
         title: 'time',

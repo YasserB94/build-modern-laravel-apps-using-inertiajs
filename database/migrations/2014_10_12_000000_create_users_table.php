@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->tinyInteger('age');
-            $table->tinyText('status');
-            $table->date('birthdate');
+            $table->tinyInteger('age')->default(rand(0,99));
+            $table->tinyText('status')->default('busy');
+            $table->date('birthdate')->default(now());
         });
     }
 

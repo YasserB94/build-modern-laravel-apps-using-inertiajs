@@ -16,6 +16,22 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/laracasts/users/create',function(){
+    return Inertia::render('Laracasts/Create');
+})->name('laracasts.users.create');
+Route::post('/laracasts/users',function(){
+    $attr=Request::validate([
+       'name'=>['string'],
+       'email'=>['email'],
+       'password'=>['min:4'],
+    ]);
+    User::create($attr);
+    return redirect('/laracasts/users');
+})->name('laracasts.users.create.submit');
+
+
+
+
 Route::get('/laracasts', function () {
     return Inertia::render('Laracasts/Index');
 })->name('laracasts');
@@ -31,6 +47,7 @@ Route::get('/laracasts/users', function () {
                 'birthdate'=>$user->birthdate
                 ];}),'filters'=>Request::only('search')]);
 })->name('laracasts.users');
+
 Route::get('/laracasts/time', function () {
     return Inertia::render('Laracasts/Time',[
         'time'=>now()->setTimezone('Europe/Brussels')->toTimeString()

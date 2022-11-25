@@ -2,6 +2,7 @@
 import Paginator from "@/Pages/Laracasts/Shared/Paginator.vue";
 import {Inertia} from '@inertiajs/inertia';
 import {ref,watch} from "vue";
+import debounce from 'lodash/debounce';
 const props = defineProps({
     filters:{
         type:Object,
@@ -13,15 +14,20 @@ const props = defineProps({
     },
 });
 const search = ref(props.filters.search);
-watch(search,(value)=>{
-    Inertia.get(route('laracasts.users'),{
-        search:value
-    },
-        {
-            preserveState:true,
-            replace:true
-        });
-})
+watch(
+    search,
+    debounce(function (value) {
+
+        Inertia.get(
+            route('laracasts.users'),
+            { search: value },
+            {
+                preserveState: true,
+                replace: true,
+            }
+        );
+    }, 1000)
+);
 </script>
 <script>
 import Layout from '@/Pages/Laracasts/Shared/Layout.vue';

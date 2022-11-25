@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -23,9 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-//'age',
-//'status',
-//'birthday',
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -44,4 +43,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Encrypt/Decrypt password whenever database is accessed
+     * New Syntax documentation @:
+     * https://laravel.com/docs/9.x/eloquent-mutators
+     *
+     * Old Syntax -> Setter
+     *     public function setPasswordAttribute(string $val): void
+     *      {
+     *          $this->attributes['password'] = bcrypt($val);
+     *       }
+     * @return Attribute ;
+     */
+    protected function password(): Attribute
+    {
+        return Attribute::make(
+            get: function (string $val): string {
+                return bcrypt($val);
+            },//Sonarlint complaining for no reason
+            set: function (string $val): string {
+                return bcrypt($val);
+            }
+        );
+    }
 }
+
+

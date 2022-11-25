@@ -16,7 +16,7 @@ defineProps({
         <h1>
             Lara<span v-if="pageTitle.length > 0"> | {{ pageTitle }}</span>
         </h1>
-        <Nav class="ml-auto lg:mx-auto" />
+        <Nav class="ml-auto lg:mx-auto" :key="route().current()"/>
     </header>
     <main class="mx-4 max-w-lg md:mx-auto">
         <slot />
