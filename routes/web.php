@@ -18,16 +18,17 @@ use Inertia\Inertia;
 */
 Route::get('/laracasts/users/create',function(){
     return Inertia::render('Laracasts/Create');
-})->name('laracasts.users.create');
+})->name('laracasts.users.create')->can('create', 'App\Models\User');
 Route::post('/laracasts/users',function(){
+
     $attr=Request::validate([
-       'name'=>['string'],
-       'email'=>['email'],
+       'name'=>['string','unique:users'],
+       'email'=>['email','unique:users'],
        'password'=>['min:4'],
     ]);
     User::create($attr);
     return redirect('/laracasts/users');
-})->name('laracasts.users.create.submit');
+})->name('laracasts.users.create.submit')->can('create', 'App\Models\User');;
 
 
 

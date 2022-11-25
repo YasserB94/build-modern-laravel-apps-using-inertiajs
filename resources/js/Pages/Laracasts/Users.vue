@@ -3,6 +3,13 @@ import Paginator from "@/Pages/Laracasts/Shared/Paginator.vue";
 import {Inertia} from '@inertiajs/inertia';
 import {ref,watch} from "vue";
 import debounce from 'lodash/debounce';
+/*
+
+    Throttling will delay executing a function. It will reduce the notifications of an event that fires multiple times.
+    Debouncing will bunch a series of sequential calls to a function into a single call to that function.
+    It ensures that one notification is made for an event that fires multiple times.
+
+ */
 const props = defineProps({
     filters:{
         type:Object,
@@ -34,16 +41,16 @@ import Layout from '@/Pages/Laracasts/Shared/Layout.vue';
 export default { layout: Layout };
 </script>
 <template>
-
-    <section class="mx-auto font-mono space-y-2 mt-2">
-      <div class="flex justify-between">
-          <h1>Users</h1>
-          <input
-              type="text"
-              class="p-1 border bg-slate-100 text-slate-800 placeholder-slate-500 rounded"
-              v-model="search"
-              placeholder="Search..."/>
-      </div>
+    <section class="mx-auto mt-2 space-y-2 font-mono">
+        <div class="flex justify-between">
+            <h1>Users</h1>
+            <input
+                type="text"
+                class="rounded border bg-slate-100 p-1 text-slate-800 placeholder-slate-500"
+                v-model="search"
+                placeholder="Search..."
+            />
+        </div>
         <div class="w-full overflow-hidden rounded shadow">
             <div class="w-full overflow-x-auto">
                 <table class="w-full">
@@ -111,8 +118,9 @@ export default { layout: Layout };
         </div>
     </section>
     <Paginator
-        class="mx-auto bg-opacity-95 flex  justify-between space-x-2"
-        :links="users.links"></Paginator>
+        class="mx-auto flex justify-between space-x-2 bg-opacity-95"
+        :links="users.links"
+    ></Paginator>
 </template>
 
 <style scoped></style>
