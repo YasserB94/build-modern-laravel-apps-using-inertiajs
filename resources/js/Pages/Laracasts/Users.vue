@@ -1,21 +1,44 @@
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3';
-
-defineProps({
+import Paginator from "@/Pages/Laracasts/Shared/Paginator.vue";
+import {Inertia} from '@inertiajs/inertia';
+import {ref,watch} from "vue";
+const props = defineProps({
+    filters:{
+        type:Object,
+        default:{search:''}
+    },
     users: {
         type: Object,
         default: {},
     },
 });
+const search = ref(props.filters.search);
+watch(search,(value)=>{
+    Inertia.get(route('laracasts.users'),{
+        search:value
+    },
+        {
+            preserveState:true,
+            replace:true
+        });
+})
 </script>
 <script>
 import Layout from '@/Pages/Laracasts/Shared/Layout.vue';
 export default { layout: Layout };
 </script>
 <template>
-    <h1>Users</h1>
-    <section class="container mx-auto p-6 font-mono">
-        <div class="mb-8 w-full overflow-hidden rounded-lg shadow-lg">
+
+    <section class="mx-auto font-mono space-y-2 mt-2">
+      <div class="flex justify-between">
+          <h1>Users</h1>
+          <input
+              type="text"
+              class="p-1 border bg-slate-100 text-slate-800 placeholder-slate-500 rounded"
+              v-model="search"
+              placeholder="Search..."/>
+      </div>
+        <div class="w-full overflow-hidden rounded shadow">
             <div class="w-full overflow-x-auto">
                 <table class="w-full">
                     <thead>
@@ -81,21 +104,9 @@ export default { layout: Layout };
             </div>
         </div>
     </section>
-
-    <div class="mx-auto bg-opacity-95 flex  justify-between space-x-2">
-        <Link
-            v-for="(link,index) in users.links"
-            :key="`${link.label}${index}`"
-            :href="link.url"
-            v-html="link.label"
-            :active="link.active"
-            class="px-1"
-            :class="{
-                'underline': link.active,
-                'hidden':!link.url
-            }"
-        />
-    </div>
+    <Paginator
+        class="mx-auto bg-opacity-95 flex  justify-between space-x-2"
+        :links="users.links"></Paginator>
 </template>
 
 <style scoped></style>

@@ -28,6 +28,9 @@ const links = [
         method: 'POST',
     },
 ];
+const isActive = (routeName)=>{
+    return route().current(routeName);
+}
 </script>
 <template>
     <nav>
@@ -38,7 +41,7 @@ const links = [
                     :element="link.element"
                     :title="link.title"
                     :method="link.method && link.method"
-                    :active="route().current(link.routeName)"
+                    :active="isActive(link.routeName)"
                 />
             </li>
         </ul>

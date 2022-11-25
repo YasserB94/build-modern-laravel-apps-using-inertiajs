@@ -21,15 +21,15 @@ Route::get('/laracasts', function () {
 })->name('laracasts');
 Route::get('/laracasts/users', function () {
     return Inertia::render('Laracasts/Users', [
-        'users'=>User::paginate(5)->through(function ($user){
+        'users'=>User::query()->when(Request::input('search'),function($query,$search){
+            $query->where('name','like', "%{$search}%");
+        })->paginate(5)->withQueryString()->through(function ($user) {
             return ['name'=>$user->name,
                     'id'=>$user->id,
                 'age'=>$user->age,
                 'status'=>$user->status,
                 'birthdate'=>$user->birthdate
-                ];
-        })
-    ]);
+                ];}),'filters'=>Request::only('search')]);
 })->name('laracasts.users');
 Route::get('/laracasts/time', function () {
     return Inertia::render('Laracasts/Time',[
