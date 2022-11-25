@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -19,7 +20,16 @@ Route::get('/laracasts', function () {
     return Inertia::render('Laracasts/Index');
 })->name('laracasts');
 Route::get('/laracasts/users', function () {
-    return Inertia::render('Laracasts/Users');
+    return Inertia::render('Laracasts/Users', [
+        'users'=>User::paginate(5)->through(function ($user){
+            return ['name'=>$user->name,
+                    'id'=>$user->id,
+                'age'=>$user->age,
+                'status'=>$user->status,
+                'birthdate'=>$user->birthdate
+                ];
+        })
+    ]);
 })->name('laracasts.users');
 Route::get('/laracasts/time', function () {
     return Inertia::render('Laracasts/Time',[
